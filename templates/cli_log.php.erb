@@ -1,0 +1,8 @@
+<%
+
+    env = scope.lookupvar('php8::env') || 'PRO'
+
+-%>
+<?php
+
+openlog('::php-cli::<%= env -%>::-', 0, <%= scope.lookupvar('php8::params::syslog_facility_php') -%>);
