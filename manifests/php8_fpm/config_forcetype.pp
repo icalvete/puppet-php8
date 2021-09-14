@@ -9,7 +9,7 @@ define php8::php8_fpm::config_forcetype (
   $forcetypes_4_shell = shell_join($forcetypes)
 
   exec{ 'config_www_pool_forcetype':
-    command => "/bin/sed -i -e \"s/.*security.limit_extensions = .php.*/security.limit_extensions = .php ${forcetypes_4_shell}/\" ${php8::common::php8_fpm_www_pool}",
+    command => "/bin/sed -i -e \"s/.*security.limit_extensions = .php.*/security.limit_extensions = .php .php3 .php4 .php5 .php7 ${forcetypes_4_shell}/\" ${php8::common::php8_fpm_www_pool}",
     unless  => "/bin/grep '\"security.limit_extensions = .php ${forcetypes_4_shell}\"' ${php8::common::php8_fpm_www_pool}"
   }
 }
