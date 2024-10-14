@@ -6,9 +6,6 @@ class php8::common inherits php8::params {
       $version = $php8::php8_cli::version
     }
 
-notify { "Hello World $version": }
-
-
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
       $php8_package     = "php8.${version}"
