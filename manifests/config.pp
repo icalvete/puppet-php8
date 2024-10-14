@@ -5,7 +5,7 @@ class php8::config {
     changes => [
       "set memcached.compression_threshold ${php8::memcached_compression_threshold}",
     ],
-    require =>  [Class['php8::modules'], Package["php8.${php8::version}-memcached"]]
+    #require =>  [Class['php8::modules'], Package["php8.${php8::version}-memcached"]]
   }
 
   include  php8::php8_cli::config

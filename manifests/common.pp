@@ -6,6 +6,9 @@ class php8::common inherits php8::params {
       $version = $php8::php8_cli::version
     }
 
+notify { "Hello World $version": }
+
+
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
       $php8_package     = "php8.${version}"
@@ -25,6 +28,10 @@ class php8::common inherits php8::params {
       case $version {
         0: {
           $extension_dir     = '/usr/lib/php/20200930'
+          $php8_modules = ["php8.${version}-curl","php8.${version}-mysql", "php8.${version}-mcrypt", "php8.${version}-gd", "php8.${version}-mbstring", "php8.${version}-bcmath", "php8.${version}-xml", "php8.${version}-sqlite3", "php8.${version}-zip", "php8.${version}-gmp", "php8.${version}-bz2",  "php8.${version}-mongodb", "php8.${version}-memcached", "php8.${version}-imagick", "php8.${version}-redis"]
+        }
+        3: {
+          $extension_dir     = '/usr/lib/php/20230831'
           $php8_modules = ["php8.${version}-curl","php8.${version}-mysql", "php8.${version}-mcrypt", "php8.${version}-gd", "php8.${version}-mbstring", "php8.${version}-bcmath", "php8.${version}-xml", "php8.${version}-sqlite3", "php8.${version}-zip", "php8.${version}-gmp", "php8.${version}-bz2",  "php8.${version}-mongodb", "php8.${version}-memcached", "php8.${version}-imagick", "php8.${version}-redis"]
         }
       }
