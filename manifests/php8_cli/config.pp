@@ -5,7 +5,7 @@ class php8::php8_cli::config {
   }
 
   augeas{'include_path_cli' :
-    context => "/files${php8::common::common_phpini}/PHP",
+    context => "/files${php8::common::php8_cli_phpini}/PHP",
     changes => "set include_path .:${php8::common::php8_includepath}:${php8::common::php8_includepath}/8.${php8::common::version}/cli",
   }
 
@@ -34,7 +34,7 @@ class php8::php8_cli::config {
   }
 
   augeas{'cli_debug' :
-    context => "/files/${php8::common::common_phpini}/PHP",
+    context => "/files/${php8::common::php8_cli_phpini}/PHP",
     changes => [
       'set error_log syslog',
       'set auto_prepend_file cli_log.php',
@@ -43,7 +43,7 @@ class php8::php8_cli::config {
 
   if $php8::common::env == 'DEV' {
     augeas{'display_errors_cli':
-      context => "/files/${php8::common::common_phpini}/PHP",
+      context => "/files/${php8::common::php8_cli_phpini}/PHP",
       changes => 'set display_errors On',
     }
   }
